@@ -38,6 +38,7 @@ body{
   font-style: $font-style;
   font-weight: bold;
   white-space: wrap;
+  font-size: 26px;
 
   @include media-self-specify(1200px, 1, 0) {
       height: auto!important;
@@ -85,6 +86,7 @@ img{
 @import "./header";
 @import "./body";
 @import "./footer";
+
 
 /*
 Query Media
