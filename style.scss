@@ -64,6 +64,15 @@ body{
   margin-right:auto;
 }
 
+.hidden {
+  display: none!important;
+}
+
+.visible {
+  display: block!important;
+  float: left;
+}
+
 .section-description-general {
   @include media-self-specify (1200px, 0, 1) {
     font-size: 18px;

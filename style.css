@@ -86,6 +86,15 @@ body {
   margin-right: auto;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+  float: left;
+}
+
 @media only screen and (min-width: 1200px) {
   .section-description-general {
     font-size: 18px;
@@ -387,7 +396,7 @@ main .our-products .portfolio .allProducts .grid .item:hover .item-content .item
 }
 main .our-products .portfolio .allProducts .grid .item:hover .item-content .item-figure .dark-background::after {
   display: block;
-  transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0px, 100%, 0px);
+  transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0px, 200%, 0px);
 }
 main .our-products .portfolio .allProducts .grid .item:hover .item-content .item-figure .overlay img {
   opacity: 1;
@@ -422,7 +431,7 @@ main .our-products .portfolio .allProducts .grid .item .item-content .item-figur
   left: 0;
   opacity: 0;
   background: #ced4da;
-  transition: opacity ease-in-out 0.4s;
+  transition: opacity ease-in-out 0.5s;
 }
 main .our-products .portfolio .allProducts .grid .item .item-content .item-figure .dark-background::after {
   background: rgba(0, 0, 0, 0.42) none repeat scroll 0 0;
@@ -594,6 +603,7 @@ main .section-technology .row .list-technologies .col-technology .technology .te
 }
 main .section-technology .row .list-technologies .col-technology .technology .technology-description-wrapper {
   position: absolute;
+  text-align: center;
   display: none;
   max-width: 455px;
   width: 455px;

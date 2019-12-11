@@ -6,6 +6,53 @@ $.fn.rangeslider = function (options) {
   return obj;
 };
 
+function removeActiveClass(list) {
+  for (let index = 0; index < list.length; index++) {
+    const element = list[index];
+    element.classList.remove('active');
+  }
+  return list;
+}
+
+function scrollToSection(navbarCollapseItems, navbarHeight) {
+  let navbarCollapseItemsStorage = navbarCollapseItems;
+  navbarCollapseItems.unbind('click').on('click', function () {
+    navbarCollapseItemsStorage = removeActiveClass(navbarCollapseItemsStorage);
+    $(this).addClass('active');
+    let idDiv = $(this).find('a').attr('href');
+    let divs = $(idDiv).offset().top;
+    let finalOffset = divs - navbarHeight;
+    if (navbarCollapseItems.offset().top == 0) {
+      $("html,body").animate({
+        scrollTop: finalOffset - navbarHeight
+      }, 1500);
+    }
+    else {
+      $("html,body").animate({
+        scrollTop: finalOffset
+      }, 1500);
+    }
+  });
+
+}
+
+// function chooseTypeOfProduct(productDiv, portfolioDiv) {
+//   let items = portfolioDiv.find('.item');
+//   productDiv.unbind('click').bind('click', function(e) {
+//     let dataFilter = $(this).data('filter');
+//     dataFilter = dataFilter.split('.')[1];
+//     for (let index = 0; index < items.length; index++) {
+//       const element = items[index];      
+//       elementData = element.getAttribute('data-category');
+      
+//       if(elementData == dataFilter) element.classList.add('.visible');
+//       else element.classList.add('hidden');
+//     }
+
+//   })
+  
+// }
+
 function updateSlider(passObj) {
   var obj = $(passObj);
   var value = obj.val();
@@ -17,7 +64,7 @@ function updateSlider(passObj) {
   barWrapper.css("marginLeft", percentage + "%");
   var barProcessedDiv = $('.fcontact-notification-bar').find(".thumb-processed-background ");
   barProcessedDiv.css("width", percentage / 3 * 2.5 + "%");
-  if (percentage % 2 == 0) barWrapper.find(".thumb").text(value * 500);
+  barWrapper.find(".thumb").text(value * 500);
 };
 
 nextParticle = document.all.logo.nextParticle;
@@ -37,6 +84,8 @@ $("document").ready(function () {
   var navbarHeight = navbar.outerHeight();
   var productSection = $('.our-products');
   var technologiesSectionOffsetTop = $('.section-technology').offset().top;
+  let navbarCollapseItems = navbar.find('ul.navbar-nav .nav-item');
+
 
   $(window).scroll(function () {
     //Set fixed to navbar section
@@ -53,12 +102,10 @@ $("document").ready(function () {
       ul.css('background', '#f5f5f5');
     }
 
-    if($(this).scrollTop() >= productSection.offset().top)
-    {
+    if ($(this).scrollTop() >= productSection.offset().top) {
       productSection.find('.portfolio').addClass('scrollDown');
     }
-    if($(this).scrollTop() < productSection.offset().top)
-    {
+    if ($(this).scrollTop() < productSection.offset().top) {
       productSection.find('.portfolio').removeClass('scrollDown');
     }
 
@@ -67,30 +114,15 @@ $("document").ready(function () {
   //Slider for calculating amount of money
   $(".slider").rangeslider();
 
-  // Setting offset element for animation 
-  $("html,body").on("click", "a[href^='#']", function (e) {
-    e.preventDefault();
-    let idDiv = $(this).attr("href");
-    let divs = $(idDiv).offset().top;
-    let finalOffset = divs - navbarHeight;
-    if (navbar.offset().top == 0) {
-      $("html,body").animate({
-        scrollTop: finalOffset - navbarHeight
-      }, 1500);
-    }
-    else {
-      $("html,body").animate({
-        scrollTop: finalOffset
-      }, 1500);
-    }
-  })
+  // Scroll to sections position from navbar 
+  scrollToSection(navbarCollapseItems, navbarHeight);
 
   //Slider image partner 
   $(".cta-img-container").slick({
     centerMode: true,
     centerPadding: "20px",
     speed: 300,
-    slidesToShow: 7,
+    slidesToShow: 5,
     responsive: [
       {
         breakpoint: 1200,
@@ -141,9 +173,9 @@ $("document").ready(function () {
   $('.slick-slider').on('click', '.slick-slide', function (e) {
     e.stopPropagation();
     var index = $(this).index();
-    if (index == 16) index = 8
-    if (index == 17) index = 9;
-    if (index == 18) index = 10;
+    if (index == 12) index = 6;
+    if (index == 13) index = 7;
+    if (index == 14) index = 8;
 
     if ($('.slick-slider').slick('slickCurrentSlide') !== index) {
       $('.slick-slider').slick('slickGoTo', index);
@@ -189,6 +221,16 @@ $("document").ready(function () {
     hideEasing: 'ease',
   });
 
+  //Filter type of product showing
+  let productEachSection = productSection.find('.product'); 
+  productEachSection.unbind('click').bind('click', function(e) {
+    let dataFilter = $(this).data('filter');
+    dataFilter = dataFilter.split('.')[1];
+    console.log(dataFilter);
+    
+    grid.filter(`.${dataFilter}`)
+
+  })
 });
 
 

@@ -241,7 +241,7 @@ main {
 
                     &::after {
                       display: block;
-                      transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0px, 100%, 0px);
+                      transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0px, 200%, 0px);
                     }
                   }
 
@@ -290,7 +290,7 @@ main {
                   left: 0;
                   opacity: 0;
                   background: $color-gray;
-                  transition: opacity ease-in-out .4s;
+                  transition: opacity ease-in-out .5s;
 
                   &::after {
                     background: rgba(0, 0, 0, 0.42) none repeat scroll 0 0;
@@ -540,6 +540,7 @@ main {
 
             .technology-description-wrapper {
               position: absolute;
+              text-align: center;
               display: none;
               max-width: 455px;
               width: 455px;
