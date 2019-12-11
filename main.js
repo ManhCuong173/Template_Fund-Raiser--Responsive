@@ -36,22 +36,20 @@ function scrollToSection(navbarCollapseItems, navbarHeight) {
 
 }
 
-// function chooseTypeOfProduct(productDiv, portfolioDiv) {
-//   let items = portfolioDiv.find('.item');
-//   productDiv.unbind('click').bind('click', function(e) {
-//     let dataFilter = $(this).data('filter');
-//     dataFilter = dataFilter.split('.')[1];
-//     for (let index = 0; index < items.length; index++) {
-//       const element = items[index];      
-//       elementData = element.getAttribute('data-category');
-      
-//       if(elementData == dataFilter) element.classList.add('.visible');
-//       else element.classList.add('hidden');
-//     }
-
-//   })
-  
-// }
+function chooseImageForScaling(portfolioItems) {
+  for (let index = 0; index < portfolioItems.length; index++) {
+    const element = portfolioItems[index];
+      element.addEventListener('click', function () {
+        let imgSrc = element.getElementsByTagName('img')[0].getAttribute('src');
+        let darkBackground = document.getElementById('darkBackgroundAndShowImage');
+        darkBackground.style.display = 'block';
+        darkBackground.getElementsByTagName('img')[0].setAttribute('src', imgSrc)
+        darkBackground.addEventListener('click', function () {
+          this.style.display = 'none';
+        }, false)
+      }, false)
+  }
+}
 
 function updateSlider(passObj) {
   var obj = $(passObj);
@@ -222,14 +220,19 @@ $("document").ready(function () {
   });
 
   //Filter type of product showing
-  let productEachSection = productSection.find('.product'); 
-  productEachSection.unbind('click').bind('click', function(e) {
-    let dataFilter = $(this).data('filter');
-    dataFilter = dataFilter.split('.')[1];
-    console.log(dataFilter);
-    
-    grid.filter(`.${dataFilter}`)
+  let productEachSection = productSection.find('.product');
+  let portfolioItems = $('.portfolio .item');
 
+  chooseImageForScaling(portfolioItems);
+
+  productEachSection.unbind('click').bind('click', function (e) {
+    let dataFilter = $(this).data('filter');
+    if (dataFilter == '*') {
+      grid.filter('.item');
+    } else {
+      dataFilter = dataFilter.split('.')[1];
+      grid.filter(`.${dataFilter}`);
+    }
   })
 });
 

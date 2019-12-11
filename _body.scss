@@ -705,3 +705,40 @@ main {
   }
 }
 
+#darkBackgroundAndShowImage {
+  background: #00000082 !important;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display:none;
+  transition: all ease-in-out .5s;
+
+  img {
+    position: fixed;
+    top: 0;
+    left:0;
+    opacity: 1;
+    transform: translate(50%,50%);
+    animation-name: displayImage;
+    animation-duration: .5s;
+    object-fit: center;
+    object-position: center;
+
+    @include media-self-specify(768px, 1, 0) {
+      width: 90%!important;
+      height: 50%;
+      transform: translate(5%,50%)!important;
+    }
+  }
+}
+@keyframes displayImage {
+  0%{
+    opacity: 0
+  }
+  100%{
+    opacity: 1;
+  }
+}
