@@ -742,3 +742,9 @@ main {
     opacity: 1;
   }
 }
+.portfolioItemActived {
+  background: $color-highlight!important;
+  transform: scale(1.1);
+  transition: transform ease-out .5s;
+  border-radius: 10px;
+}

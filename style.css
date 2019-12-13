@@ -789,6 +789,13 @@ main .cta-section .cta-img-container .cta-img img {
     opacity: 1;
   }
 }
+.portfolioItemActived {
+  background: #FF9051 !important;
+  transform: scale(1.1);
+  transition: transform ease-out 0.5s;
+  border-radius: 10px;
+}
+
 /*
 Footer Section
 */
