@@ -16,7 +16,6 @@ function removeActiveClass(list, className) {
 
 function scrollToSection(navbarCollapseItems, navbarHeight) {
   navbarCollapseItems.unbind('click').on('click', function () {
-    $(this).addClass('active');
     let idDiv = $(this).find('a').attr('href');
     let divs = $(idDiv).offset().top;
     let finalOffset = divs - navbarHeight;
@@ -29,7 +28,7 @@ function scrollToSection(navbarCollapseItems, navbarHeight) {
       $("html,body").animate({
         scrollTop: finalOffset
       }, 1500);
-    }
+    };
   });
 
 }
@@ -145,7 +144,7 @@ $("document").ready(function () {
     }
     
     //Set active class to each section in navbar 
-    if($(this).scrollTop() <= serviceSectionOffsetTop) {
+    if($(this).scrollTop() < serviceSectionOffsetTop) {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[0].classList.add('active');
     }
@@ -153,7 +152,7 @@ $("document").ready(function () {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[1].classList.add('active');
     }
-    else if($(this).scrollTop() > productSectionOffsetTop && $(this).scrollTop() <= technologySectionOffsetTop) {
+    else if($(this).scrollTop() >= productSectionOffsetTop && $(this).scrollTop() <= technologySectionOffsetTop) {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[2].classList.add('active');
     }
