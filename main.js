@@ -104,6 +104,14 @@ $("document").ready(function () {
     aboutusSectionOffsetTop -= 400;
     contactFormOffsetTop -= 600;
   };
+
+  if($(window).width() >= $(window).height()) {
+    serviceSectionOffsetTop -= 200;
+    productSectionOffsetTop -= 200;
+    technologySectionOffsetTop -= 200;
+    aboutusSectionOffsetTop -= 200;
+    contactFormOffsetTop -= 200;
+  }
   //Filter type of product showing
   let productEachSection = productSection.find('.product');
   let portfolioSection = $('.portfolio');
