@@ -15,9 +15,7 @@ function removeActiveClass(list, className) {
 }
 
 function scrollToSection(navbarCollapseItems, navbarHeight) {
-  let navbarCollapseItemsStorage = navbarCollapseItems;
   navbarCollapseItems.unbind('click').on('click', function () {
-    navbarCollapseItemsStorage = removeActiveClass(navbarCollapseItemsStorage,'active');
     $(this).addClass('active');
     let idDiv = $(this).find('a').attr('href');
     let divs = $(idDiv).offset().top;
@@ -81,8 +79,7 @@ function chooseProductItem(productItems) {
     productItemsStorage = removeActiveClass(productItemsStorage, 'portfolioItemActived');
     $(this).addClass('portfolioItemActived');
     $(this).closest('.our-products').find('.product').css('color', '#1a1a1a')
-    $(this).closest('.product').css('color', '#FF9051');
-    console.log($(this).closest('.product'));  
+    $(this).closest('.product').css('color', '#FF9051'); 
   })
   
 }
@@ -92,9 +89,45 @@ $("document").ready(function () {
   var ul = $('ul.navbar-nav');
   var navbarHeight = navbar.outerHeight();
   var productSection = $('.our-products');
-  var technologiesSectionOffsetTop = $('.section-technology').offset().top;
-  let navbarCollapseItems = navbar.find('ul.navbar-nav .nav-item');
+  let navbarItems = navbar.find('ul.navbar-nav .nav-item');
+  let navbarItemsGetByJS = document.getElementsByClassName('nav-item');
 
+  let serviceSectionOffsetTop = $('.our-services').offset().top;
+  let productSectionOffsetTop = productSection.offset().top;
+  let technologySectionOffsetTop = $('.section-technology').offset().top;
+  let aboutusSectionOffsetTop = $('.our-activities').offset().top;
+  let contactFormOffsetTop = $('#footer').offset().top;
+
+  if(navigator.userAgent.search("Firefox") > -1 || $(window).width() < 768 || $(window).width() >= 768) {
+    serviceSectionOffsetTop -= 400;
+    productSectionOffsetTop -= 400;
+    technologySectionOffsetTop -= 400;
+    aboutusSectionOffsetTop -= 400;
+    contactFormOffsetTop -= 600;
+  };
+  //Filter type of product showing
+  let productEachSection = productSection.find('.product');
+  let portfolioSection = $('.portfolio');
+  let portfolioItems = $('.portfolio .item');
+
+  chooseImageForScaling(portfolioItems);
+
+  productEachSection.unbind('click').bind('click', function (e) {
+    portfolioSection.addClass('scrollDown');
+
+    let dataFilter = $(this).data('filter');
+    if (dataFilter == '*') {
+      grid.filter('.item');
+    } else {
+      dataFilter = dataFilter.split('.')[1];
+      grid.filter(`.${dataFilter}`);
+    }
+
+    let portfolioSectionHeight = $('.allProducts').height();  
+    technologySectionOffsetTop += portfolioSectionHeight;
+    aboutusSectionOffsetTop += portfolioSectionHeight;
+    contactFormOffsetTop += portfolioSectionHeight;
+  });
 
   $(window).scroll(function () {
     //Set fixed to navbar section
@@ -110,21 +143,39 @@ $("document").ready(function () {
       navbar.css('background', '#f5f5f5');
       ul.css('background', '#f5f5f5');
     }
-
-    if ($(this).scrollTop() >= productSection.offset().top) {
-      productSection.find('.portfolio').addClass('scrollDown');
+    
+    //Set active class to each section in navbar 
+    if($(this).scrollTop() <= serviceSectionOffsetTop) {
+      removeActiveClass(navbarItems, 'active')
+      navbarItemsGetByJS[0].classList.add('active');
     }
-    if ($(this).scrollTop() < productSection.offset().top) {
-      productSection.find('.portfolio').removeClass('scrollDown');
+    else if($(this).scrollTop() > serviceSectionOffsetTop && $(this).scrollTop() <= productSectionOffsetTop) {
+      removeActiveClass(navbarItems, 'active')
+      navbarItemsGetByJS[1].classList.add('active');
     }
-
+    else if($(this).scrollTop() > productSectionOffsetTop && $(this).scrollTop() <= technologySectionOffsetTop) {
+      removeActiveClass(navbarItems, 'active')
+      navbarItemsGetByJS[2].classList.add('active');
+    }
+    else if($(this).scrollTop() > technologySectionOffsetTop && $(this).scrollTop() <= aboutusSectionOffsetTop) {
+      removeActiveClass(navbarItems, 'active')
+      navbarItemsGetByJS[3].classList.add('active');
+    }
+    else if($(this).scrollTop() > aboutusSectionOffsetTop && $(this).scrollTop() <= contactFormOffsetTop) {
+      removeActiveClass(navbarItems, 'active')
+      navbarItemsGetByJS[4].classList.add('active');
+    }
+    else {
+      removeActiveClass(navbarItems, 'active')
+      navbarItemsGetByJS[5].classList.add('active');
+    }
   });
 
   //Slider for calculating amount of money
   $(".slider").rangeslider();
 
   // Scroll to sections position from navbar 
-  scrollToSection(navbarCollapseItems, navbarHeight);
+  scrollToSection(navbarItems, navbarHeight);
 
   //Slider image partner 
   $(".cta-img-container").slick({
@@ -228,22 +279,6 @@ $("document").ready(function () {
     // Default hide animation
     hideDuration: 300,
     hideEasing: 'ease',
-  });
-
-  //Filter type of product showing
-  let productEachSection = productSection.find('.product');
-  let portfolioItems = $('.portfolio .item');
-
-  chooseImageForScaling(portfolioItems);
-
-  productEachSection.unbind('click').bind('click', function (e) {
-    let dataFilter = $(this).data('filter');
-    if (dataFilter == '*') {
-      grid.filter('.item');
-    } else {
-      dataFilter = dataFilter.split('.')[1];
-      grid.filter(`.${dataFilter}`);
-    }
   });
 
   //Active product item 

@@ -724,7 +724,7 @@ main {
     transform: translate(50%,50%);
     animation-name: displayImage;
     animation-duration: .5s;
-    object-fit: center;
+    object-fit: contain;
     object-position: center;
 
     @include media-self-specify(768px, 1, 0) {

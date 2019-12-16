@@ -61,9 +61,22 @@ header {
           .nav-item {
             display: inline-block;
             margin-left: 1.8rem;
+            transition: transform ease-in-out .2s;
+
+            @include media-self-specify(1200px, 1, 0) {
+              &:hover {
+                transform: scaleX(1.1) translateX(5%)!important;    
+                color:$color-highlight!important;           
+              }
+            }
+
+            &:hover {
+              transform: scale(1.1);    
+              color:$color-highlight!important;            
+            }
 
             &.active {
-              color:$color-highlight!important;
+              color:$color-highlight!important;             
             }
           }
 
