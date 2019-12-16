@@ -98,7 +98,7 @@ $("document").ready(function () {
   let aboutusSectionOffsetTop = $('.our-activities').offset().top;
   let contactFormOffsetTop = $('#footer').offset().top;
 
-  if(navigator.userAgent.search("Firefox") > -1 || $(window).width() < 768 || $(window).width() >= 768) {
+  if(navigator.userAgent.search("Firefox") > -1 && $(window).width() < 768 && $(window).width() >= 768) {
     serviceSectionOffsetTop -= 400;
     productSectionOffsetTop -= 400;
     technologySectionOffsetTop -= 400;
