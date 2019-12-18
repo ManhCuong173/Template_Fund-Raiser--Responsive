@@ -2,27 +2,44 @@
 Header Section
 */
 header {
-
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  z-index:10000;
+  
   nav {
-    background:#f5f5f5;
+    background: #f5f5f5;
     position: fixed;
 
     @include media-self-specify(992px, 1, 0) {
       & {
-        z-index:999;
+        z-index: 999;
       }
     }
+
+    @include media-self-specify(768px, 1, 0) {
+      & {
+        padding: 0 !important;
+      }
+    }
+
     height: 75px;
 
-    %container {
+    .container-fluid {
       display: flex;
       align-items: center;
       height: 100%;
 
       .navbar-toggler {
-        padding: .25rem .50rem;
         font-size: 1.50rem;
-        
+
+        @include media-self-specify(768px, 1, 0) {
+          & {
+            margin-right: 25px;
+          }
+        }
+
         &:focus {
           outline: 0;
           box-shadow: 0 0 3px $color_bay_of_many_approx;
@@ -30,7 +47,7 @@ header {
 
         .fas .fa-bars {
           color: $color_bay_of_many_approx;
-        }      
+        }
       }
 
       .navbar-collapse {
@@ -41,6 +58,8 @@ header {
         @include media-mobile {
           overflow: hidden;
         }
+
+        margin-left: 20px;
       }
 
       #main-menu {
@@ -50,9 +69,9 @@ header {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
-          background:#f5f5f5;
+          background: #f5f5f5;
 
-          @include media-self-specify(992px, 1, 0) {
+          @include media-self-specify(768px, 1, 0) {
             & {
               flex-direction: column;
             }
@@ -65,18 +84,18 @@ header {
 
             @include media-self-specify(1200px, 1, 0) {
               &:hover {
-                transform: scaleX(1.1) translateX(5%)!important;    
-                color:$color-highlight!important;           
+                transform: scaleX(1.1) translateX(5%) !important;
+                color: $color-highlight !important;
               }
             }
 
             &:hover {
-              transform: scale(1.1);    
-              color:$color-highlight!important;            
+              transform: scale(1.1);
+              color: $color-highlight !important;
             }
 
             &.active {
-              color:$color-highlight!important;             
+              color: $color-highlight !important;
             }
           }
 
@@ -86,7 +105,7 @@ header {
             font-size: 16px;
             line-height: 19px;
             text-decoration: none;
-            color:inherit;
+            color: inherit;
           }
         }
       }

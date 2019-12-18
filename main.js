@@ -22,12 +22,12 @@ function scrollToSection(navbarCollapseItems, navbarHeight) {
     if (navbarCollapseItems.offset().top == 0) {
       $("html,body").animate({
         scrollTop: finalOffset - navbarHeight
-      }, 1500);
+      },1800);
     }
     else {
       $("html,body").animate({
         scrollTop: finalOffset
-      }, 1500);
+      }, 1800);
     };
   });
 
@@ -77,7 +77,9 @@ function chooseProductItem(productItems) {
   productItems.unbind('click').on('click', function() {
     productItemsStorage = removeActiveClass(productItemsStorage, 'portfolioItemActived');
     $(this).addClass('portfolioItemActived');
-    $(this).closest('.our-products').find('.product').css('color', '#1a1a1a')
+    //Tìm tất cả tag product khác và gán màu đen
+    $(this).closest('.our-products').find('.product').css('color', '#1a1a1a');
+    //Tập trurng thằng cần click và gán màu hight light
     $(this).closest('.product').css('color', '#FF9051'); 
   })
   
@@ -96,6 +98,13 @@ $("document").ready(function () {
   let technologySectionOffsetTop = $('.section-technology').offset().top;
   let aboutusSectionOffsetTop = $('.our-activities').offset().top;
   let contactFormOffsetTop = $('#footer').offset().top;
+  let scrollUpToTopButton = $('.scrollUpIcon');
+
+  scrollUpToTopButton.on('click', function(evnet) {
+    $('html,body').animate({
+      scrollTop: 0
+    }, 1500);
+  })
 
   if(navigator.userAgent.search("Firefox") > -1 && $(window).width() < 768 && $(window).width() >= 768) {
     serviceSectionOffsetTop -= 400;
@@ -116,40 +125,64 @@ $("document").ready(function () {
   let productEachSection = productSection.find('.product');
   let portfolioSection = $('.portfolio');
   let portfolioItems = $('.portfolio .item');
+  let currentAddingHeight = 0;
 
   chooseImageForScaling(portfolioItems);
 
   productEachSection.unbind('click').bind('click', function (e) {
-    portfolioSection.addClass('scrollDown');
+    if(currentAddingHeight == 0 ) {
+      portfolioSection.addClass('scrollDown');
 
-    let dataFilter = $(this).data('filter');
-    if (dataFilter == '*') {
-      grid.filter('.item');
+      let dataFilter = $(this).data('filter');
+      if (dataFilter == '*') {
+        grid.filter('.item');
+      } else {
+        dataFilter = dataFilter.split('.')[1];
+        grid.filter(`.${dataFilter}`);
+      }
+  
+      let portfolioSectionHeight = $('.allProducts').height();  
+      technologySectionOffsetTop += portfolioSectionHeight;
+      aboutusSectionOffsetTop += portfolioSectionHeight;
+      contactFormOffsetTop += portfolioSectionHeight;
+      currentAddingHeight = portfolioSectionHeight;
     } else {
-      dataFilter = dataFilter.split('.')[1];
-      grid.filter(`.${dataFilter}`);
-    }
+      technologySectionOffsetTop -= currentAddingHeight;
+      aboutusSectionOffsetTop -= currentAddingHeight;
+      contactFormOffsetTop -= currentAddingHeight;
+      
+      portfolioSection.addClass('scrollDown');
 
-    let portfolioSectionHeight = $('.allProducts').height();  
-    technologySectionOffsetTop += portfolioSectionHeight;
-    aboutusSectionOffsetTop += portfolioSectionHeight;
-    contactFormOffsetTop += portfolioSectionHeight;
+      let dataFilter = $(this).data('filter');
+      if (dataFilter == '*') {
+        grid.filter('.item');
+      } else {
+        dataFilter = dataFilter.split('.')[1];
+        grid.filter(`.${dataFilter}`);
+      }
+  
+      let portfolioSectionHeight = $('.allProducts').height();  
+      technologySectionOffsetTop += portfolioSectionHeight;
+      aboutusSectionOffsetTop += portfolioSectionHeight;
+      contactFormOffsetTop += portfolioSectionHeight;
+      currentAddingHeight = portfolioSectionHeight
+    }
   });
 
   $(window).scroll(function () {
     //Set fixed to navbar section
-    if ($(this).scrollTop() >= navbarHeight) {
-      navbar.css('position', 'fixed');
-      navbar.css('width', '100%');
-      navbar.css('zIndex', '1000');
-      navbar.css('background', '#dee2e6');
-      ul.css('background', '#dee2e6');
-    }
-    if ($(this).scrollTop() < navbarHeight) {
-      navbar.css('position', 'relative');
-      navbar.css('background', '#f5f5f5');
-      ul.css('background', '#f5f5f5');
-    }
+    // if ($(this).scrollTop() >= navbarHeight) {
+    //   navbar.css('position', 'fixed');
+    //   navbar.css('width', '100%');
+    //   navbar.css('zIndex', '1000');
+    //   navbar.css('background', '#dee2e6');
+    //   ul.css('background', '#dee2e6');
+    // }
+    // if ($(this).scrollTop() < navbarHeight) {
+    //   navbar.css('position', 'relative');
+    //   navbar.css('background', '#f5f5f5');
+    //   ul.css('background', '#f5f5f5');
+    // }
     
     //Set active class to each section in navbar 
     if($(this).scrollTop() < serviceSectionOffsetTop) {
@@ -261,7 +294,7 @@ $("document").ready(function () {
 
     if (!name || !email || !phonenumber || !comment) {
       e.preventDefault();
-      alertify.error("You need to complete fill in this form");
+      alertify.error("You need to completely fill in this form");
       return;
     }
   });

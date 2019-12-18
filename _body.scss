@@ -4,6 +4,7 @@ main {
   $color-border_1: #f6f9fc;
   $color-box-shadow_1: rgba(0, 0, 0, 0.15);
   $color-text_1: #37d0fc;
+  margin-top: 75px;
 
   .banner {
     width: 100%;
@@ -109,6 +110,8 @@ main {
           img {
             margin-top: 36px;
             margin-bottom: 28px;
+            border-radius: 50%;
+            box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.15)
           }
         }
 
@@ -127,6 +130,13 @@ main {
 
           .list-services-description {
             color: $color_text_general !important;
+          }
+
+          img {
+            animation-name: scaleUpIcon;
+            animation-duration: 1.5s;
+            animation-direction: reverse;
+            animation-timing-function: cubic-bezier(0.6, -0.50, 0.735, 0.045);
           }
         }
 
@@ -194,11 +204,12 @@ main {
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 10px;
 
             &:hover {
-              background: rgb(255, 144, 81) !important;
+              background: $color_bay_of_many_approx !important;
               box-shadow: 0px 25px 25px $color-box-shadow_1;
-              border: 1px solid rgb(255, 144, 81);
+              border: 1px solid $color_bay_of_many_approx;
               transition: all ease-out .2s;
             }
           }
@@ -742,8 +753,19 @@ main {
     opacity: 1;
   }
 }
+
+@keyframes scaleUpIcon {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translateY(10%) scale(1.5);
+    opacity: 0.2;
+  } 
+ }
+
 .portfolioItemActived {
-  background: $color-highlight!important;
+  background: $color_bay_of_many_approx!important;
   transform: scale(1.1);
   transition: transform ease-out .5s;
   border-radius: 10px;
