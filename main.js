@@ -185,12 +185,6 @@ $("document").ready(function () {
       }
     }, true)
   }
-  // for (let index = 0; index < productItemsGetByJS.length; index++) {
-  //   productItemsGetByJS[index].addEventListener('click', function () {
-  //     
-
-  //   }, true)
-  // }
 
   $(window).scroll(function () {
     //Set active class to each section in navbar 
@@ -282,13 +276,10 @@ $("document").ready(function () {
   $('.slick-slider').on('click', '.slick-slide', function (e) {
     e.stopPropagation();
     var index = $(this).index();
-    if (index == 12) index = 6;
-    if (index == 13) index = 7;
-    if (index == 14) index = 8;
-
-    if ($('.slick-slider').slick('slickCurrentSlide') !== index) {
-      $('.slick-slider').slick('slickGoTo', index);
-    }
+    
+    // if ($('.slick-slider').slick('slickCurrentSlide') !== index) {
+    //   $('.slick-slider').slick('slickGoTo', index);
+    // }
   });
 
 
@@ -312,9 +303,9 @@ $("document").ready(function () {
   $('.cta-img').on('click', function (event) {
     event.preventDefault();
     var domElement = $(this);
-    setTimeout(() => {
-      window.open(domElement.find('a').attr('href'), '_blank');
-    }, 1000);
+    // setTimeout(() => {
+    //   window.open(domElement.find('a').attr('href'), '_blank');
+    // }, 1000);
   })
 
   //MuuriJS Actived
