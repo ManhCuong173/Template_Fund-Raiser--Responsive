@@ -72,17 +72,17 @@ window.onresize = function () {
   nextParticle.start();
 };
 
-function chooseProductItem(productItems) {
-  let productItemsStorage = productItems;
-  productItems.unbind('click').on('click', function () {
-    productItemsStorage = removeActiveClass(productItemsStorage, 'portfolioItemActived');
-    $(this).addClass('portfolioItemActived');
-    //Tìm tất cả tag product khác và gán màu đen
-    $(this).closest('.our-products').find('.product').css('color', '#1a1a1a');
-    //Tập trurng thằng cần click và gán màu hight light
-    $(this).closest('.product').css('color', '#FF9051');
-  })
+function chooseProductItem(productItem, productItems) {
 
+  removeActiveClass(productItems, 'portfolioItemActived');
+  productItem.classList.add('portfolioItemActived');
+  //Tìm tất cả tag product khác và gán màu đen
+  let parentNode = productItem.closest('.our-products').getElementsByClassName('product');
+  for (let index = 0; index < parentNode.length; index++) {
+    parentNode[index].style.color = '#1a1a1a';
+  }
+  //Tập trurng thằng cần click và gán màu hight light
+  productItem.parentElement.style.color = '#FF9051';
 }
 
 $("document").ready(function () {
@@ -136,55 +136,61 @@ $("document").ready(function () {
 
   for (let index = 0; index < productItemsGetByJS.length; index++) {
     productItemsGetByJS[index].addEventListener('click', function () {
-      let parentProductClass = this.parentElement;
-      if (currentAddingHeight == 0) {
-        portfolioSection.addClass('scrollDown');
-        dataFilter = parentProductClass.getAttribute('data-filter');
-        if (dataFilter == '*') {
-          grid.filter('.item');
-        } else {
-          dataFilter = dataFilter.split('.')[1];
-          grid.filter(`.${dataFilter}`);
-        }
-
-        let portfolioSectionHeight = $('.allProducts').height();
-        technologySectionOffsetTop += portfolioSectionHeight;
-        aboutusSectionOffsetTop += portfolioSectionHeight;
-        contactFormOffsetTop += portfolioSectionHeight;
-        currentAddingHeight = portfolioSectionHeight;
-      } else {
-        technologySectionOffsetTop -= currentAddingHeight;
-        aboutusSectionOffsetTop -= currentAddingHeight;
-        contactFormOffsetTop -= currentAddingHeight;
-
-        portfolioSection.addClass('scrollDown');
-        dataFilter = parentProductClass.getAttribute('data-filter');
-        if (dataFilter == '*') {
-          grid.filter('.item');
-        } else {
-          dataFilter = dataFilter.split('.')[1];
-          grid.filter(`.${dataFilter}`);
-        }
-
-        let portfolioSectionHeight = $('.allProducts').height();
-        technologySectionOffsetTop += portfolioSectionHeight;
-        aboutusSectionOffsetTop += portfolioSectionHeight;
-        contactFormOffsetTop += portfolioSectionHeight;
-        currentAddingHeight = portfolioSectionHeight;
-      }
-    }, true)
-  }
-  for (let index = 0; index < productItemsGetByJS.length; index++) {
-    productItemsGetByJS[index].addEventListener('click', function () {
       if (this.classList.contains('portfolioItemActived')) {
         portfolioSection.removeClass('scrollDown');
         technologySectionOffsetTop -= currentAddingHeight;
         aboutusSectionOffsetTop -= currentAddingHeight;
         contactFormOffsetTop -= currentAddingHeight;
         currentAddingHeight = 0;
+        this.classList.remove('portfolioItemActived')
+        this.style.color = '#1a1a1a';
+      } else {
+        let parentProductClass = this.parentElement;
+        if (currentAddingHeight == 0) {
+          portfolioSection.addClass('scrollDown');
+          dataFilter = parentProductClass.getAttribute('data-filter');
+          if (dataFilter == '*') {
+            grid.filter('.item');
+          } else {
+            dataFilter = dataFilter.split('.')[1];
+            grid.filter(`.${dataFilter}`);
+          }
+
+          let portfolioSectionHeight = $('.allProducts').height();
+          technologySectionOffsetTop += portfolioSectionHeight;
+          aboutusSectionOffsetTop += portfolioSectionHeight;
+          contactFormOffsetTop += portfolioSectionHeight;
+          currentAddingHeight = portfolioSectionHeight;
+        } else {
+          technologySectionOffsetTop -= currentAddingHeight;
+          aboutusSectionOffsetTop -= currentAddingHeight;
+          contactFormOffsetTop -= currentAddingHeight;
+
+          portfolioSection.addClass('scrollDown');
+          dataFilter = parentProductClass.getAttribute('data-filter');
+          if (dataFilter == '*') {
+            grid.filter('.item');
+          } else {
+            dataFilter = dataFilter.split('.')[1];
+            grid.filter(`.${dataFilter}`);
+          }
+
+          let portfolioSectionHeight = $('.allProducts').height();
+          technologySectionOffsetTop += portfolioSectionHeight;
+          aboutusSectionOffsetTop += portfolioSectionHeight;
+          contactFormOffsetTop += portfolioSectionHeight;
+          currentAddingHeight = portfolioSectionHeight;
+        }
+        chooseProductItem(this, productItems);
       }
     }, true)
   }
+  // for (let index = 0; index < productItemsGetByJS.length; index++) {
+  //   productItemsGetByJS[index].addEventListener('click', function () {
+  //     
+
+  //   }, true)
+  // }
 
   $(window).scroll(function () {
     //Set active class to each section in navbar 
@@ -324,7 +330,6 @@ $("document").ready(function () {
     hideEasing: 'ease',
   });
 
-  chooseProductItem(productItems);
 });
 
 
