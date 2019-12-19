@@ -181,11 +181,6 @@ main {
           padding: 0 7.95px;
           height: 100%;
 
-          &:hover {
-            color: rgb(255, 144, 81) !important;
-            cursor: pointer;
-          }
-
           &-title {
             font-size: 14px;
             line-height: 16px;
@@ -211,6 +206,8 @@ main {
               box-shadow: 0px 25px 25px $color-box-shadow_1;
               border: 1px solid $color_bay_of_many_approx;
               transition: all ease-out .2s;
+              color: rgb(255, 144, 81) !important;
+              cursor: pointer;
             }
           }
         }

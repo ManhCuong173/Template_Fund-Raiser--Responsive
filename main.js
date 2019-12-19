@@ -74,7 +74,7 @@ window.onresize = function () {
 
 function chooseProductItem(productItems) {
     let productItemsStorage = productItems;
-  productItems.unbind('click').on('click', function() {
+    productItems.unbind('click').on('click', function() {
     productItemsStorage = removeActiveClass(productItemsStorage, 'portfolioItemActived');
     $(this).addClass('portfolioItemActived');
     //Tìm tất cả tag product khác và gán màu đen
@@ -99,6 +99,7 @@ $("document").ready(function () {
   let aboutusSectionOffsetTop = $('.our-activities').offset().top;
   let contactFormOffsetTop = $('#footer').offset().top;
   let scrollUpToTopButton = $('.scrollUpIcon');
+
 
   scrollUpToTopButton.on('click', function(evnet) {
     $('html,body').animate({
@@ -128,62 +129,57 @@ $("document").ready(function () {
   let currentAddingHeight = 0;
 
   chooseImageForScaling(portfolioItems);
-
-  productEachSection.unbind('click').bind('click', function (e) {
-    if(currentAddingHeight == 0 ) {
-      portfolioSection.addClass('scrollDown');
-
-      let dataFilter = $(this).data('filter');
-      if (dataFilter == '*') {
-        grid.filter('.item');
-      } else {
-        dataFilter = dataFilter.split('.')[1];
-        grid.filter(`.${dataFilter}`);
-      }
   
-      let portfolioSectionHeight = $('.allProducts').height();  
-      technologySectionOffsetTop += portfolioSectionHeight;
-      aboutusSectionOffsetTop += portfolioSectionHeight;
-      contactFormOffsetTop += portfolioSectionHeight;
-      currentAddingHeight = portfolioSectionHeight;
-    } else {
-      technologySectionOffsetTop -= currentAddingHeight;
-      aboutusSectionOffsetTop -= currentAddingHeight;
-      contactFormOffsetTop -= currentAddingHeight;
+  let productItems = productSection.find('.product-info');
+  let productItemsGetByJS = document.getElementsByClassName('product-info');
+  let dataFilter;
+
+  for (let index = 0; index < productItemsGetByJS.length; index++) {
+     productItemsGetByJS[index].addEventListener('click', function() {
+      let parentProductClass = this.parentElement;
       
-      portfolioSection.addClass('scrollDown');
-
-      let dataFilter = $(this).data('filter');
-      if (dataFilter == '*') {
-        grid.filter('.item');
-      } else {
-        dataFilter = dataFilter.split('.')[1];
-        grid.filter(`.${dataFilter}`);
-      }
+      if(currentAddingHeight == 0 ) {
+        portfolioSection.addClass('scrollDown');
   
-      let portfolioSectionHeight = $('.allProducts').height();  
-      technologySectionOffsetTop += portfolioSectionHeight;
-      aboutusSectionOffsetTop += portfolioSectionHeight;
-      contactFormOffsetTop += portfolioSectionHeight;
-      currentAddingHeight = portfolioSectionHeight
-    }
-  });
-
-  $(window).scroll(function () {
-    //Set fixed to navbar section
-    // if ($(this).scrollTop() >= navbarHeight) {
-    //   navbar.css('position', 'fixed');
-    //   navbar.css('width', '100%');
-    //   navbar.css('zIndex', '1000');
-    //   navbar.css('background', '#dee2e6');
-    //   ul.css('background', '#dee2e6');
-    // }
-    // if ($(this).scrollTop() < navbarHeight) {
-    //   navbar.css('position', 'relative');
-    //   navbar.css('background', '#f5f5f5');
-    //   ul.css('background', '#f5f5f5');
-    // }
+        dataFilter = parentProductClass.getAttribute('data-filter');
+        if (dataFilter == '*') {
+          grid.filter('.item');
+        } else {
+          dataFilter = dataFilter.split('.')[1];
+          grid.filter(`.${dataFilter}`);
+        }
     
+        let portfolioSectionHeight = $('.allProducts').height();  
+        technologySectionOffsetTop += portfolioSectionHeight;
+        aboutusSectionOffsetTop += portfolioSectionHeight;
+        contactFormOffsetTop += portfolioSectionHeight;
+        currentAddingHeight = portfolioSectionHeight;
+      } else {
+        technologySectionOffsetTop -= currentAddingHeight;
+        aboutusSectionOffsetTop -= currentAddingHeight;
+        contactFormOffsetTop -= currentAddingHeight;
+        
+        portfolioSection.addClass('scrollDown');
+  
+        dataFilter = parentProductClass.getAttribute('data-filter');
+        if (dataFilter == '*') {
+          grid.filter('.item');
+        } else {
+          dataFilter = dataFilter.split('.')[1];
+          grid.filter(`.${dataFilter}`);
+        }
+    
+        let portfolioSectionHeight = $('.allProducts').height();  
+        technologySectionOffsetTop += portfolioSectionHeight;
+        aboutusSectionOffsetTop += portfolioSectionHeight;
+        contactFormOffsetTop += portfolioSectionHeight;
+        currentAddingHeight = portfolioSectionHeight
+      }
+    }, true)
+    
+  }
+
+  $(window).scroll(function () {    
     //Set active class to each section in navbar 
     if($(this).scrollTop() < serviceSectionOffsetTop) {
       removeActiveClass(navbarItems, 'active')
@@ -321,8 +317,6 @@ $("document").ready(function () {
     hideEasing: 'ease',
   });
 
-  //Active product item 
-  let productItems = productSection.find('.product-info')
   chooseProductItem(productItems);
 });
 
