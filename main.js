@@ -22,7 +22,7 @@ function scrollToSection(navbarCollapseItems, navbarHeight) {
     if (navbarCollapseItems.offset().top == 0) {
       $("html,body").animate({
         scrollTop: finalOffset - navbarHeight
-      },1800);
+      }, 1800);
     }
     else {
       $("html,body").animate({
@@ -36,15 +36,15 @@ function scrollToSection(navbarCollapseItems, navbarHeight) {
 function chooseImageForScaling(portfolioItems) {
   for (let index = 0; index < portfolioItems.length; index++) {
     const element = portfolioItems[index];
-      element.addEventListener('click', function () {
-        let imgSrc = element.getElementsByTagName('img')[0].getAttribute('src');
-        let darkBackground = document.getElementById('darkBackgroundAndShowImage');
-        darkBackground.style.display = 'block';
-        darkBackground.getElementsByTagName('img')[0].setAttribute('src', imgSrc)
-        darkBackground.addEventListener('click', function () {
-          this.style.display = 'none';
-        }, false)
+    element.addEventListener('click', function () {
+      let imgSrc = element.getElementsByTagName('img')[0].getAttribute('src');
+      let darkBackground = document.getElementById('darkBackgroundAndShowImage');
+      darkBackground.style.display = 'block';
+      darkBackground.getElementsByTagName('img')[0].setAttribute('src', imgSrc)
+      darkBackground.addEventListener('click', function () {
+        this.style.display = 'none';
       }, false)
+    }, false)
   }
 }
 
@@ -73,16 +73,16 @@ window.onresize = function () {
 };
 
 function chooseProductItem(productItems) {
-    let productItemsStorage = productItems;
-    productItems.unbind('click').on('click', function() {
+  let productItemsStorage = productItems;
+  productItems.unbind('click').on('click', function () {
     productItemsStorage = removeActiveClass(productItemsStorage, 'portfolioItemActived');
     $(this).addClass('portfolioItemActived');
     //Tìm tất cả tag product khác và gán màu đen
     $(this).closest('.our-products').find('.product').css('color', '#1a1a1a');
     //Tập trurng thằng cần click và gán màu hight light
-    $(this).closest('.product').css('color', '#FF9051'); 
+    $(this).closest('.product').css('color', '#FF9051');
   })
-  
+
 }
 
 $("document").ready(function () {
@@ -101,13 +101,13 @@ $("document").ready(function () {
   let scrollUpToTopButton = $('.scrollUpIcon');
 
 
-  scrollUpToTopButton.on('click', function(evnet) {
+  scrollUpToTopButton.on('click', function (evnet) {
     $('html,body').animate({
       scrollTop: 0
     }, 1500);
   })
 
-  if(navigator.userAgent.search("Firefox") > -1 && $(window).width() < 768 && $(window).width() >= 768) {
+  if (navigator.userAgent.search("Firefox") > -1 && $(window).width() < 768 && $(window).width() >= 768) {
     serviceSectionOffsetTop -= 400;
     productSectionOffsetTop -= 400;
     technologySectionOffsetTop -= 400;
@@ -115,7 +115,7 @@ $("document").ready(function () {
     contactFormOffsetTop -= 600;
   };
 
-  if($(window).width() >= $(window).height()) {
+  if ($(window).width() >= $(window).height()) {
     serviceSectionOffsetTop -= 200;
     productSectionOffsetTop -= 200;
     technologySectionOffsetTop -= 200;
@@ -129,18 +129,16 @@ $("document").ready(function () {
   let currentAddingHeight = 0;
 
   chooseImageForScaling(portfolioItems);
-  
+
   let productItems = productSection.find('.product-info');
   let productItemsGetByJS = document.getElementsByClassName('product-info');
   let dataFilter;
 
   for (let index = 0; index < productItemsGetByJS.length; index++) {
-     productItemsGetByJS[index].addEventListener('click', function() {
+    productItemsGetByJS[index].addEventListener('click', function () {
       let parentProductClass = this.parentElement;
-      
-      if(currentAddingHeight == 0 ) {
+      if (currentAddingHeight == 0) {
         portfolioSection.addClass('scrollDown');
-  
         dataFilter = parentProductClass.getAttribute('data-filter');
         if (dataFilter == '*') {
           grid.filter('.item');
@@ -148,8 +146,8 @@ $("document").ready(function () {
           dataFilter = dataFilter.split('.')[1];
           grid.filter(`.${dataFilter}`);
         }
-    
-        let portfolioSectionHeight = $('.allProducts').height();  
+
+        let portfolioSectionHeight = $('.allProducts').height();
         technologySectionOffsetTop += portfolioSectionHeight;
         aboutusSectionOffsetTop += portfolioSectionHeight;
         contactFormOffsetTop += portfolioSectionHeight;
@@ -158,9 +156,8 @@ $("document").ready(function () {
         technologySectionOffsetTop -= currentAddingHeight;
         aboutusSectionOffsetTop -= currentAddingHeight;
         contactFormOffsetTop -= currentAddingHeight;
-        
+
         portfolioSection.addClass('scrollDown');
-  
         dataFilter = parentProductClass.getAttribute('data-filter');
         if (dataFilter == '*') {
           grid.filter('.item');
@@ -168,36 +165,46 @@ $("document").ready(function () {
           dataFilter = dataFilter.split('.')[1];
           grid.filter(`.${dataFilter}`);
         }
-    
-        let portfolioSectionHeight = $('.allProducts').height();  
+
+        let portfolioSectionHeight = $('.allProducts').height();
         technologySectionOffsetTop += portfolioSectionHeight;
         aboutusSectionOffsetTop += portfolioSectionHeight;
         contactFormOffsetTop += portfolioSectionHeight;
-        currentAddingHeight = portfolioSectionHeight
+        currentAddingHeight = portfolioSectionHeight;
       }
     }, true)
-    
+  }
+  for (let index = 0; index < productItemsGetByJS.length; index++) {
+    productItemsGetByJS[index].addEventListener('click', function () {
+      if (this.classList.contains('portfolioItemActived')) {
+        portfolioSection.removeClass('scrollDown');
+        technologySectionOffsetTop -= currentAddingHeight;
+        aboutusSectionOffsetTop -= currentAddingHeight;
+        contactFormOffsetTop -= currentAddingHeight;
+        currentAddingHeight = 0;
+      }
+    }, true)
   }
 
-  $(window).scroll(function () {    
+  $(window).scroll(function () {
     //Set active class to each section in navbar 
-    if($(this).scrollTop() < serviceSectionOffsetTop) {
+    if ($(this).scrollTop() < serviceSectionOffsetTop) {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[0].classList.add('active');
     }
-    else if($(this).scrollTop() > serviceSectionOffsetTop && $(this).scrollTop() <= productSectionOffsetTop) {
+    else if ($(this).scrollTop() > serviceSectionOffsetTop && $(this).scrollTop() <= productSectionOffsetTop) {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[1].classList.add('active');
     }
-    else if($(this).scrollTop() >= productSectionOffsetTop && $(this).scrollTop() <= technologySectionOffsetTop) {
+    else if ($(this).scrollTop() >= productSectionOffsetTop && $(this).scrollTop() <= technologySectionOffsetTop) {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[2].classList.add('active');
     }
-    else if($(this).scrollTop() > technologySectionOffsetTop && $(this).scrollTop() <= aboutusSectionOffsetTop) {
+    else if ($(this).scrollTop() > technologySectionOffsetTop && $(this).scrollTop() <= aboutusSectionOffsetTop) {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[3].classList.add('active');
     }
-    else if($(this).scrollTop() > aboutusSectionOffsetTop && $(this).scrollTop() <= contactFormOffsetTop) {
+    else if ($(this).scrollTop() > aboutusSectionOffsetTop && $(this).scrollTop() <= contactFormOffsetTop) {
       removeActiveClass(navbarItems, 'active')
       navbarItemsGetByJS[4].classList.add('active');
     }
