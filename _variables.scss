@@ -1,34 +1,28 @@
 
 //colors
-$color-white: #FFFFFF;
-$color-gray: #ced4da;
-$color-highlight: #FF9051;
-$color-highlight_2: #84ccef;
-$color-black: #000000;
-$color_bay_of_many_approx: #20478b;
-
-$color_background_general: #eaf0f7;
-$color_text_general: #67758d;
-
-$color-title:#283040;
-
-$color_background_1: #f5f5f5;
-
+$color_light: #FFFFFF;
+$color_dark: #000000;
 //fonts
 $font-family: 'Roboto', sans-serif;
 $font-style: normal;
-
-//urls
-$url_0: url(./assets/cta-bg.png);
-
-//image
-$img-resize: cover;
+$font-weight: normal;
 
 $tags: header, section, footer;
 
 @each $tag in $tags {
   #{ $tag } {
     display: block;
+  }
+}
+
+@mixin grid($grid_templates_columns,$grid_templates_rows ) {
+  @if($grid_templates_columns == 0) {
+    display: grid;
+    grid-template-rows: $grid_templates_rows;
+  }
+  @if($grid_templates_rows == 0) {
+    display: grid;
+    grid-template-columns: $grid_templates_columns;
   }
 }
 
