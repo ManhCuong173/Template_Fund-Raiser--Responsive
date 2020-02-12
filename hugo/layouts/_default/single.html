@@ -1,0 +1,90 @@
+{{ define "main" }}
+<main>
+	<section id="main_infor" class="main_infor">
+		<div class="main_wrapper">
+			<div class='main_inner'>
+				<div class='banner'>
+					<img src="{{ .Params.banner }}" class='Banner_Image_URL' alt="">
+				</div>
+				<div class='personal_information'>
+					<div class='wrapper'>
+						<!-- <div class='left_aside'>
+							<div class='personal_avatar'>
+								<img src="http://myreward.dsoftware.io/images/User-Avatar.png" class="Avata_Image_URL"
+									alt="">
+							</div>
+						</div> -->
+						<!-- <div class="right_aside"> -->
+						<div class='personal_detail_info'>
+							<p class='Title_Event text-uppercase'>{{ .Title }}</p>
+							<!-- <p class='User_Name'>Kennith Barrows</p> -->
+							<!-- <p class='User_Description'>{{ .Params.description }}</p> -->
+						</div>
+						<!-- </div> -->
+					</div>
+				</div>
+				<div class='fund_donate_current_figures'>
+					<div class=wrapper>
+						<div class='left_aside'>
+							<p>Total: <span class='Total_Money'></span></p>
+						</div>
+						<div class='right_aside'>
+							<p>Date: <span class="Due_Date"></span></p>
+						</div>
+					</div>
+				</div>
+				<div class="fund_description">
+					<p class='Description_Event'>
+						{{ .Params.description }}
+					</p>
+				</div>
+				<div class='fund_donate_information'>
+					<div class='person_donate_info'>
+						<!-- <div class=number_person_donated_wrapper>
+							<p>
+								<span class='Number_Person_Donated'>40</span> have donated
+							</p>
+						</div> -->
+						<div class='avatar_person_donated_wrapper'>
+							<div class="avatar_person_donated">
+								<img src="http://myreward.dsoftware.io/images/Small-Avatar_1.png" alt=""
+									style='width: 25px; height: 25px;'>
+							</div>
+							<div class="avatar_person_donated">
+								<img src="http://myreward.dsoftware.io/images/Small-Avatar_2.png" alt=""
+									style='width: 25px; height: 25px;'>
+							</div>
+							<div class="avatar_person_donated">
+								<img src="http://myreward.dsoftware.io/images/Small-Avatar_3.png" alt=""
+									style='width: 25px; height: 25px;'>
+							</div>
+							<div class="avatar_person_donated">
+								<img src="http://myreward.dsoftware.io/images/Small-Avatar_4.png" alt=""
+									style='width: 25px; height: 25px;'>
+							</div>
+						</div>
+					</div>
+					<!-- <div class='fund_sharing_facebook'>
+						<a href='#' class='link_sharing'>Share on FB</a>
+					</div> -->
+				</div>
+			</div>
+			<div class='platforms'>
+				<div class='platforms_inner'>
+					<div class='platform_android'>
+						<a href="#" class='Play_Store_URL'>
+							<img src="http://myreward.dsoftware.io/images/GooglePlay-Store.png" width="175px"
+								height="60px" />
+						</a>
+					</div>
+					<div class='platform_ios'>
+						<a href="" class='Apple_Store_URL'>
+							<img src="http://myreward.dsoftware.io/images/App-Store.png" width="175px" height="60px" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+{{ end }}
