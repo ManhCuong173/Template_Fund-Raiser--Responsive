@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="http://myreward.dsoftware.io/css/style.css" type="text/css">
+	<title>Web Fundraiser</title>
+	<style>
+		main {
+			background: url("http://myreward.dsoftware.io/images/Banner-Background.svg");
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav class="nav" id="navbar">
+			<div class="container-fluid">
+				<a class="navbar-brand">
+					<img src="http://myreward.dsoftware.io/images/Logo-Company.svg"
+						style="width:39.34px; height: 39.34px;" />
+					<img src="http://myreward.dsoftware.io/images/Name-Company.png"
+						style="width: 65.96px; height: 12.69px;" />
+				</a>
+				<div class="help_widget">
+					<img src="http://myreward.dsoftware.io/images/Question-Icon.png"
+						style="width: 17px!important; height: 17px!important;" />
+					<span>Help</span>
+				</div>
+			</div>
+		</nav>
+	</header>
+	{{ block "main" . }}{{ end }}
+	<footer id="footer">
+		<div class="container">
+			<div class="contact_wrapper">
+				<div class="icon_fundraiser">
+					<img src="http://myreward.dsoftware.io/images/Logo-Company.svg" alt=""
+						style="width: 188px; height: 188px;">
+				</div>
+				<div class="contact_information">
+					<p class='contact_title'>
+						Contact Us
+					</p>
+					<div class="contact_inner">
+						<div class='contact_email'>
+							<div class='user_input'>
+								Email: <span class="Email_Contact"></span>
+							</div>
+							<span class='user_number'>
+								5535
+							</span>
+						</div>
+						<div class='contact_phone'>
+							<div class='user_input'>
+								Phone: <span class="Phone_Contact"></span>
+							</div>
+							<span class='user_number'>
+								234324
+							</span>
+						</div>
+						<div class='contact_address'>
+							<div class='user_input'>
+								Link Website: <a class="Link_Website" href="#"></a>
+							</div>
+							<span class='user_number'>
+								234
+							</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="contact_social">
+					<p class='contact_title'>
+						Follow Us
+					</p>
+					<div class='list_contact_social'>
+						<a href="" class="Facebook_Page_URL">
+							<img src="http://myreward.dsoftware.io/images/Small-Icon-App_3.png" alt=""
+								style="width: 20px; height: 20px;">
+						</a>
+						<a href="">
+							<img src="http://myreward.dsoftware.io/images/Small-Icon-App_4.png" alt=""
+								style="width: 20px; height: 20px;">
+						</a>
+						<a href="">
+							<img src="http://myreward.dsoftware.io/images/Small-Icon-App_1.png" alt=""
+								style="width: 20px; height: 20px;">
+						</a>
+						<a href="">
+							<img src="http://myreward.dsoftware.io/images/Small-Icon-App_2.png" alt=""
+								style="width: 20px; height: 20px;">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>
