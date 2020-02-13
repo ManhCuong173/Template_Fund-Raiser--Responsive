@@ -1,0 +1,55 @@
+/*
+Header Section
+*/
+header {
+  nav {
+    padding: 13px 0px 13px 16px;
+
+    @include media-specification(576px, 0, 1) {
+      padding: 13px 16px;
+    }
+
+    .container-fluid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .navbar-brand {
+        display: flex;
+        padding-top: .3125rem;
+        padding-bottom: .3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+        align-items: center;
+        padding-left: 0;
+
+        @include media-specification(576px, 0, 1) {
+          padding-left: 1.6%;
+        }
+      }
+
+      .help_widget {
+        border-left: 2px solid #000000;
+        padding: 3px 9px 3px 20px;
+        height: 20px;
+
+        @include media-specification(576px, 1, 0) {
+          padding: 3px 9px;
+        }
+
+        span {
+          font-size: 14px;
+          line-height: 14px;
+          vertical-align: text-top;
+          margin-left: 10px;
+
+          @include media-specification(576px, 1, 0) {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}

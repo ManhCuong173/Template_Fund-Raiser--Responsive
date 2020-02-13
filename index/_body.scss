@@ -1,0 +1,318 @@
+main {
+  $background_color: #F4F4F4;
+  $background_color_2: #C4C4C4;
+  $color_text: #152935;
+  $color_text_share_link: #1E90FF;
+
+  background: url(./../assets/Banner-Background.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+
+  @include media-specification(576px, 1, 0) {
+    background: $color_light !important;
+  }
+
+  .main_infor {
+
+    .main_wrapper {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 77px;
+
+      @include media-specification(576px, 1, 0) {
+        & {
+          padding-top: 0;
+        }
+      }
+
+      .main_inner {
+        max-width: 580px;
+        width: 100%;
+        height: auto;
+        background: $color_light;
+        padding: 20px;
+
+        @include media-specification(576px, 1, 0) {
+          & {
+            padding: 0;
+          }
+        }
+
+        .banner {
+          width: 100%;
+
+          .Banner_Image_URL {
+            width: 100%;
+            height: auto;
+            max-height: 163px;
+            object-fit: cover;
+            object-position: center;
+
+            @include media-specification(576px, 1, 0) {
+              max-height: 91px;
+              object-position: center;
+            }
+          }
+        }
+
+        .personal_information {
+          padding: 22px 22px 22px 10px;
+          background-color: $background_color;
+
+          @include media-specification(576px, 1, 0) {
+            padding: 22px;
+          }
+
+          .wrapper {
+            @include grid(4fr 8fr, 0);
+
+            .left_aside {
+              .personal_avatar {
+                max-width: 120px;
+                margin: auto;
+
+                .Avata_Image_URL {
+                  max-width: 110px;
+                  max-height: 110px;
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 110px;
+                  object-fit: contain;
+                  object-position: center;
+
+                  @include media-specification(576px, 0, 1) {
+                    max-width: 120px !important;
+                    max-height: 120px !important;
+                  }
+                }
+              }
+            }
+
+            .right_aside {
+              padding-left: 10px;
+              @include media-specification(576px, 1, 0) {
+                padding-left: 20px;
+              }
+
+              .personal_detail_info {
+                p {
+                  padding: 2.5px 0;
+                }
+
+                .Title_Event {
+                  font-weight: bold;
+                  font-size: 16px;
+                  line-height: 20px;
+                  letter-spacing: 0.202655px;
+                  text-transform: uppercase;
+                  color: $color-dark;
+
+                  @include media-specification(360px, 1, 0) {
+                    font-size: 14px;
+                  }
+                }
+
+                .User_Name {
+                  font-weight: bold;
+                  font-size: 14px;
+                  line-height: 22px;
+                  color: #000000;
+
+                  @include media-specification(360px, 1, 0) {
+                    font-size: 12px;
+                  }
+                }
+
+                .User_Description {
+                  font-size: 14px;
+                  line-height: 22px;
+                  color: #000000;
+
+                  @include media-specification(360px, 1, 0) {
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .fund_donate_current_figures {
+          margin-top: 21px;
+
+          .wrapper {
+            @include grid(6fr 6fr, 0);
+
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 16px;
+            letter-spacing: 0.0384615em;
+            color: $color_dark;
+
+            @include media-specification(360px, 1, 0) {
+              font-size: 20px;
+            }
+
+            .left_aside {
+              padding: 14px;
+              background-color: $background_color_2;
+              margin-right: 2px;
+
+            }
+
+            .right_aside {
+              padding: 14px;
+              background-color: $background_color_2;
+            }
+          }
+        }
+
+        .fund_description {
+          margin-top: 10px;
+          padding: 11px 9px 11px 12px;
+          min-height: 100px;
+
+          .Description_Event {
+            font-size: 14px;
+            line-height: 20px;
+            color: $color_text;
+            white-space: normal;
+            white-space-collapsing: collapse;
+            text-wrap: normal;
+            word-break: break-all;
+
+            @include media-specification(360px, 1, 0) {
+              font-size: 12px;
+            }
+          }
+        }
+
+        .fund_donate_information {
+          @include grid(8fr 4fr, 0);
+          padding: 11px 14px 11px 12px;
+
+          .person_donate_info {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            line-height: 16px;
+            color: $color_text;
+
+            .number_person_donated_wrapper {
+              height: fit-content;
+            }
+
+            .avatar_person_donated_wrapper {
+              padding: 5px;
+              height: fit-content;
+
+              .avatar_person_donated {
+                float: left;
+                border-radius: 50%;
+
+                &:nth-child(2) {
+                  transform: translateX(-50%);
+                }
+
+                &:nth-child(3) {
+                  transform: translateX(-100%);
+
+                  @include media-specification(285px, 1, 0) {
+                    display: none;
+                  }
+                }
+
+                &:nth-child(4) {
+                  transform: translateX(-150%);
+
+                  @include media-specification(315px, 1, 0) {
+                    display: none;
+                  }
+                }
+
+                img {
+                  @include media-specification(350px, 1, 0) {
+                    max-width: 20px !important;
+                    max-height: 20px !important;
+                    width: 100% !important;
+                    height: auto;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .fund_sharing_facebook {
+          font-size: 13px;
+          line-height: 16px;
+          position: relative;
+
+          .link_sharing {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            color: $color_text_share_link;
+            text-decoration: none;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .platforms {
+        max-width: 480px;
+        width: 100%;
+
+
+        .platforms_inner {
+          display: flex;
+          padding: 55px 16px;
+
+          @include media-specification(360px, 0, 1) {
+            justify-content: space-evenly;
+          }
+
+          @include media-specification(360px, 1, 0) {
+            flex-direction: column;
+            justify-content: center;
+          }
+          
+          .platform_android {
+            @include media-specification(360px, 1, 0) {
+              flex: 0 0 100%;
+            }
+
+            .Play_Store_URL {
+              display: block;
+
+              @include media-specification(360px, 1, 0) {
+                margin: 0 0 20px 0;
+                text-align: center;
+              }
+            }
+          }
+
+          .platform_ios {
+            @include media-specification(360px, 1, 0) {
+              flex: 0 0 100%;
+            }
+
+            .Apple_Store_URL {
+              display: block;
+              
+              @include media-specification(360px, 1, 0) {
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
