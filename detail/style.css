@@ -196,6 +196,12 @@ main .main_infor .main_wrapper .main_inner .wrapper_imgs .IOS_imgs .overflow_img
   opacity: 0;
 }
 
+.firstSlide {
+  opacity: 1!important;
+  animation-name: firstSlide!important;
+  animation-duration: 4s;
+}
+
 .toNextSlide {
   margin-left: -100%;
   opacity: 1 !important;
@@ -203,16 +209,47 @@ main .main_infor .main_wrapper .main_inner .wrapper_imgs .IOS_imgs .overflow_img
   animation-duration: 4s;
 }
 
+.animationScaleTitle {
+  animation-name: scaleUpText;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+}
+
 @keyframes toNextSlide {
   0% {
     transform: translateX(0);
   }
-  50% {
+  25% {
+    transform: translateX(100%);
+  }
+  75% {
     transform: translateX(100%);
   }
   100% {
     transform: translateX(200%);
   }
+}
+
+@keyframes firstSlide {
+  0% {
+    transform: translateX(0);
+    opacity: 1!important;
+  }
+  75% {
+    transform: translateX(0);
+    opacity: 1!important;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0!important;
+  }
+}
+
+@keyframes scaleUpText {
+  0%{transform: scale(0)};
+  30% {transform: scale(1.5)};
+  70%{transform: scale(1.5)};
+  100% {transform: scale(0)};
 }
 /*
 Footer Section
