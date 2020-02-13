@@ -1,0 +1,53 @@
+main {
+  $background_color: #F4F4F4;
+  $background_color_2: #C4C4C4;
+  $color_text: #152935;
+  $color_text_share_link: #1E90FF;
+  overflow: hidden;
+
+  @include media-specification(576px, 1, 0) {
+    background: $color_light !important;
+  }
+
+  .main_infor {
+    width: 100vw;
+    height: 100vh;
+
+    .main_wrapper {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      @include media-specification(576px, 1, 0) {
+        & {
+          padding-top: 0;
+        }
+      }
+
+      .main_inner {
+        max-width: 580px;
+        width: 100%;
+        padding: 20px;
+
+        .title_404{
+            font-size: 76px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+}
+
+.toNextSlide {
+  margin-left: -100%;
+  opacity: 1!important;
+  animation-name: toNextSlide;
+  animation-duration: 4s;
+}
+@keyframes toNextSlide {
+  0%{transform: translateX(0)}
+  50%{transform: translateX(100%)}
+  100%{transform: translateX(200%)}
+}

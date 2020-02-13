@@ -1,0 +1,138 @@
+main {
+  $background_color: #F4F4F4;
+  $background_color_2: #C4C4C4;
+  $color_text: #152935;
+  $color_text_share_link: #1E90FF;
+
+  background: url(./../assets/Banner-Background.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+
+  @include media-specification(576px, 1, 0) {
+    background: $color_light !important;
+  }
+
+  .main_infor {
+    width: 100vw;
+    height: 120vh;
+
+    @include media-specification_2(576px, 1024px) {
+      height: 100vh;
+    }
+
+    .main_wrapper {
+      text-align: center;
+      padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include media-specification(576px, 1, 0) {
+        & {
+          padding-top: 0;
+        }
+      }
+
+      .main_inner {
+        max-width: 580px;
+        width: 100%;
+        padding: 20px;
+
+        @include media-specification(576px, 1, 0) {
+          & {
+            padding: 0;
+          }
+        }
+
+        .title_imgs{
+          width: 100%;
+          height: 20px;
+          text-align: center;
+          font-weight: bold;
+          font-size: 28px;
+        }
+        .wrapper_imgs {
+          position: relative;
+          margin-top: 3rem;
+          height: 100%;
+          width: 100%;
+
+
+          .AND_imgs{
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+
+            .overflow_img{
+              position: absolute;
+              min-height: 700px;
+              overflow: hidden;
+              top:50%;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 60%;
+              height: 100%;
+
+              img{
+                position: absolute;
+                top:0;
+                left:0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                opacity: 0;
+              }
+            }
+          }
+  
+          .IOS_imgs{
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+  
+            .overflow_img{
+              position: absolute;
+              overflow: hidden;
+              min-height: 700px;
+              top:50%;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 60%;
+              height: 100%;
+
+              img{
+                width: 100%;
+                position: absolute;
+                top:0;
+                left:0;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                opacity: 0;
+              }
+            }
+          }
+        }
+ 
+      }
+    }
+  }
+}
+
+.toNextSlide {
+  margin-left: -100%;
+  opacity: 1!important;
+  animation-name: toNextSlide;
+  animation-duration: 4s;
+}
+@keyframes toNextSlide {
+  0%{transform: translateX(0)}
+  50%{transform: translateX(100%)}
+  100%{transform: translateX(200%)}
+}
